@@ -96,7 +96,7 @@ def main():
         prefix = "\033[1;34m"
         suffix = "\033[0m"
 
-    # 3. Formatted Profile Display
+    # 3. FORMATTED DISPLAY PROFILE
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     profile_lines = []
     profile_lines.extend(format_row("Full Name", full_name))
