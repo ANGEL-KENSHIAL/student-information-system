@@ -69,7 +69,7 @@ def main():
     fav_language = get_non_empty_input("Enter Favourite Language        : ")
     hall = get_non_empty_input("Enter Hall of Residence         : ")
 
-    # 2. String Concatenation Logic
+    # 2. STRING CONCATENATION LOGIC
     # Generate Username: First 3 letters of name (lowercase) + Student ID
     generated_username = generate_username(full_name, student_id)
 
