@@ -37,11 +37,19 @@ def get_non_empty_input(prompt_text):
         user_input = input(prompt_text).strip()
     return user_input
 
+def normalize_name(full_name):
+    """Normalize user-entered names by trimming spaces and capitalizing each part."""
+    name_parts = full_name.split()
+    return " ".join(name_parts).title()
+
 def generate_username(full_name, student_id):
     """Build a username from the first three letters of a student's name and ID."""
-    clean_name = full_name.replace(" ", "").lower()
+    clean_name = "".join(character for character in full_name.lower() if character.isalnum())
     name_prefix = clean_name[0:3] if len(clean_name) >= 3 else clean_name
-    return name_prefix + str(student_id)
+    if len(name_prefix) == 0:
+        name_prefix = "std"
+    clean_student_id = "".join(character for character in str(student_id) if character.isalnum())
+    return name_prefix + clean_student_id
 
 def save_profile(username, profile_text):
     """Save a copy of the displayed profile using the generated username."""
@@ -61,7 +69,7 @@ def main():
     print("Please enter the student details below:\n")
 
     # 1. Input Collection
-    full_name = get_non_empty_input("Enter Full Name                 : ")
+    full_name = normalize_name(get_non_empty_input("Enter Full Name                 : "))
     student_id = get_non_empty_input("Enter Student ID                : ")
     programme = get_non_empty_input("Enter Programme of Study        : ")
     level = get_non_empty_input("Enter Level (e.g., 100, 200)    : ")
